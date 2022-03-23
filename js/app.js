@@ -18,9 +18,9 @@ class store
     {
         this.clientName = "";//store name set to zero
         this.filePath = "";//use this with random
-        this.image= "";
+        this.image= "";//image with jpg tied to the name
         this.imgShownCounter = 0;//counter to count shown
-        this.clicks=0;
+        this.clicks=0;//clicks random from user
     }
     random() {return this.random = Math.floor(Math.random() * (65 - 23) + 23);}
 }
@@ -35,7 +35,7 @@ class store1 extends store
         //this.clicks is set to 0
         this.clientName= clientName;
         this.filePath= clientFilePath;
-        this.image=`/img/${this.clientName}.${this.filePath}`;
+        this.image=`img/${this.clientName}.${this.filePath}`;
     }
 }
 
@@ -49,7 +49,7 @@ class store2 extends store
         this.clientName= toCpyObj.clientName;
         this.filePath= toCpyObj.filePath;
         this.imgShownCounter= toCpyObj.imgShownCounter;
-        this.image=`/img/${this.clientName}.${this.filePath}`;
+        this.image=`img/${this.clientName}.${this.filePath}`;
         this.clicks=toCpyObj.clicks;
       }
       catch(exception)
@@ -57,7 +57,6 @@ class store2 extends store
         console.log("object had incorrect values. please check constructor")
       }
       return;
-        //return; //TODO: try using try catches..
     }
 }
 
@@ -70,12 +69,26 @@ let storeArr = [
   new store1('boots'    , 'jpg'),
   new store1('breakfast', 'jpg'),
   new store1('bubblegum', 'jpg'),
+
   new store1('chair'    , 'jpg'),
   new store1('cthulhu'  , 'jpg'),
+
   new store1('dog-duck' , 'jpg'),
   new store1('dragon'   , 'jpg'),
+
   new store1('pen'      , 'jpg'),
-  new store1('pet-sweep', 'jpg')
+  new store1('pet-sweep', 'jpg'),
+
+  new store1('scissors' , 'jpg'),
+  new store1('shark'    , 'jpg'),
+  new store1('sweep'    , 'png'),
+
+  new store1('tauntaun' ,'jpg'),
+
+  new store1('unicorn'  , 'jpg'),
+
+  new store1('water-can', 'jpg'),
+  new store1('wine-glass', 'jpg')
     ];
   
  
