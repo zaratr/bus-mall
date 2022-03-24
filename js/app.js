@@ -2,11 +2,16 @@
 //DOM References
 let VOTINGROUNDS= 25;
 let tempArr = []; 
+let storeArr = [];
 //DOM ref
   let imgContainer = document.getElementById('shopImages');
   let resultsBtn = document.getElementById('view-results-btn');
   let resultsList = document.getElementById('display-results-list');
   let chartElem = document.getElementById('chart').getContext('2d');
+  
+  let imgOne= document.getElementById('image-one');
+  let imgTwo= document.getElementById('image-two');
+  let imgThree= document.getElementById('image-three');
 
 //local storage 2
 let retrievedStringified = localStorage.getItem('pictionary');
@@ -70,12 +75,12 @@ class store2 extends store
 //global
 if(retrievedStringified)
 {
-  let storeArr = parsedPics;
+  storeArr = parsedPics;
 }
 else
 {
 
-let storeArr = [
+storeArr = [
   new store1('bag'      , 'jpg'),
   new store1('banana'   , 'jpg'),
   new store1('bathroom' , 'jpg'),
@@ -163,9 +168,6 @@ function main()//works similar to main in other programming languages. for simpl
   /*
     local declarations
   */
-  let imgOne= document.getElementById('image-one');
-  let imgTwo= document.getElementById('image-two');
-  let imgThree= document.getElementById('image-three');
   let imContainer = [];//local array to hold temp amount of images
   let rando = 0;
   let len = storeArr.length;
