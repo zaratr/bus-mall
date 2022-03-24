@@ -76,6 +76,7 @@ class store2 extends store
 if(retrievedStringified)
 {
   storeArr = parsedPics;
+  //localStorage.removeItem('pictionary');
 }
 else
 {
