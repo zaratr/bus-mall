@@ -5,6 +5,9 @@ let VOTINGROUNDS= 25;
   let imgContainer = document.getElementById('shopImages');
   let resultsBtn = document.getElementById('view-results-btn');
   let resultsList = document.getElementById('display-results-list');
+  let chartElem = document.getElementById('chart').getContext('2d');
+
+
 //classes
 
 class store 
