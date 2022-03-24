@@ -8,7 +8,9 @@ let tempArr = [];
   let resultsList = document.getElementById('display-results-list');
   let chartElem = document.getElementById('chart').getContext('2d');
 
-
+//local storage 2
+let retrievedStringified = localStorage.getItem('pictionary');
+let parsedPics = JSON.parse(retrievedStringified);
 //classes
 
 class store 
@@ -66,6 +68,13 @@ class store2 extends store
 
 //assign storeArr with constructors
 //global
+if(retrievedStringified)
+{
+  let storeArr = parsedPics;
+}
+else
+{
+
 let storeArr = [
   new store1('bag'      , 'jpg'),
   new store1('banana'   , 'jpg'),
@@ -87,6 +96,7 @@ let storeArr = [
   new store1('water-can', 'jpg'),
   new store1('wine-glass', 'jpg')
   ];
+}
   
  
 //Functions objects
@@ -209,10 +219,16 @@ function handleClick(event)
     --VOTINGROUNDS;
     if(VOTINGROUNDS === 0)
     {
+      //remove eventlistener
       imgContainer.removeEventListener('click', handleClick);
+      //chart builder
       charter();
+      //local storage part 1
+      let stringified = JSON.stringify(storeArr);
+      localStorage.setItem('pictionary', stringified);
       return;
     }
+
     main();
 }
 
