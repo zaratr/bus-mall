@@ -1,6 +1,7 @@
 'use strict'
 //DOM References
-let VOTINGROUNDS= 25; 
+let VOTINGROUNDS= 25;
+let tempArr = []; 
 //DOM ref
   let imgContainer = document.getElementById('shopImages');
   let resultsBtn = document.getElementById('view-results-btn');
@@ -72,30 +73,79 @@ let storeArr = [
   new store1('boots'    , 'jpg'),
   new store1('breakfast', 'jpg'),
   new store1('bubblegum', 'jpg'),
-
   new store1('chair'    , 'jpg'),
   new store1('cthulhu'  , 'jpg'),
-
   new store1('dog-duck' , 'jpg'),
   new store1('dragon'   , 'jpg'),
-
   new store1('pen'      , 'jpg'),
   new store1('pet-sweep', 'jpg'),
-
   new store1('scissors' , 'jpg'),
   new store1('shark'    , 'jpg'),
   new store1('sweep'    , 'png'),
-
   new store1('tauntaun' ,'jpg'),
-
   new store1('unicorn'  , 'jpg'),
-
   new store1('water-can', 'jpg'),
   new store1('wine-glass', 'jpg')
-    ];
+  ];
   
  
 //Functions objects
+
+function charter()
+{
+  let prodName = [];
+  let prodClicks = [];
+  let prodViews = [];
+
+  for(let i = 0; i < storeArr.length; ++i)
+  {
+    prodName.push(storeArr[i].clientName);
+    prodClicks.push(storeArr[i].clicks);
+    prodName.push(storeArr[i].imgShownCounter);
+  }
+
+  let literalChart = {
+    type: 'bar',
+    data: {
+      labels: prodName,
+      datasets: [{
+        label: '# of Votes',
+        data: prodClicks,
+        backgroundColor: [
+          'yellow'
+        ],
+        borderColor: [
+          'black'
+        ],
+        borderWidth: 1
+      },
+      {
+        label: '# of Views',
+        data: prodViews,
+        backgroundColor: [
+          'darkgrey'
+        ],
+        borderColor: [
+          'black'
+        ],
+        borderWidth: 1
+      }]
+    },
+    options: {
+      scales: {
+        y:{
+          beginAtZero: true
+        }
+      },
+    }
+  };
+  new Chart(chartElem, literalChart);//using another script library
+}
+
+
+
+
+
 function getRandom(len){ return Math.floor(Math.random() * len);}
 function main()//works similar to main in other programming languages. for simplicity all work will be here.
 {
@@ -105,45 +155,44 @@ function main()//works similar to main in other programming languages. for simpl
   let imgOne= document.getElementById('image-one');
   let imgTwo= document.getElementById('image-two');
   let imgThree= document.getElementById('image-three');
-
-
-   let len = storeArr.length;
+  let imContainer = [];//local array to hold temp amount of images
+  let rando = 0;
+  let len = storeArr.length;
     //function calling
-    let checkIfSame1=     getRandom(len);
-    let checkIfSame2=     getRandom(len);
-    let checkIfSame3=     getRandom(len);
-
-    while(checkIfSame1 === checkIfSame2 || checkIfSame1 === checkIfSame3 || checkIfSame2 === checkIfSame3) 
+  while(tempArr.length < 6)
+  {
+    rando = getRandom(len);
+    if(!tempArr.includes(rando))
     {
-      if(checkIfSame1 === checkIfSame2) checkIfSame2=getRandom(len);
-      if(checkIfSame1 === checkIfSame3) checkIfSame3=getRandom(len);
-      if(checkIfSame2 === checkIfSame3) checkIfSame2=getRandom(len);
+      tempArr.push(rando);
     }
-    
-    imgOne.src= storeArr[checkIfSame1].image;
-    imgOne.alt= storeArr[checkIfSame1].clientName;
-    storeArr[checkIfSame1].imgShownCounter++;
+  }
+  if(tempArr.length === 6)
+  {
+    tempArr.splice(0, 3)
 
-    imgTwo.src= storeArr[checkIfSame2].image;
-    imgTwo.alt= storeArr[checkIfSame2].clientName;
-    storeArr[checkIfSame2].imgShownCounter++;
+  }
+   let index1 = tempArr[0] ;
+   let index2 = tempArr[1] ;
+   let index3 = tempArr[2] ;
 
-    imgThree.src= storeArr[checkIfSame3].image;
-    imgThree.alt= storeArr[checkIfSame3].clientName;
-    storeArr[checkIfSame3].imgShownCounter++;
+    imgOne.src= storeArr[index1].image;
+    imgOne.alt= storeArr[index1].clientName;
+    storeArr[index1].imgShownCounter++;
 
+    imgTwo.src= storeArr[index2].image;
+    imgTwo.alt= storeArr[index2].clientName;
+    storeArr[index2].imgShownCounter++;
 
-
-
-
+    imgThree.src= storeArr[index3].image;
+    imgThree.alt= storeArr[index3].clientName;
+    storeArr[index3].imgShownCounter++;
+  
     return 0;
-
 }
 
 main();
-
 //* event handles */
-
 function handleClick(event)
 {
   let imgClicked = event.target.alt;
@@ -165,7 +214,7 @@ function handleClick(event)
     main();
 }
 
-
+/*
 function handleShowResult()
 {
   if(VOTINGROUNDS !== 0)
@@ -179,5 +228,7 @@ function handleShowResult()
     resultsList.appendChild(li);
   }
 }
+resultsBtn.
+addEventListener('click', handleShowResult);
+*/
 imgContainer.addEventListener('click', handleClick);
-resultsBtn.addEventListener('click', handleShowResult);
