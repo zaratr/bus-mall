@@ -101,7 +101,7 @@ function charter()
   {
     prodName.push(storeArr[i].clientName);
     prodClicks.push(storeArr[i].clicks);
-    prodName.push(storeArr[i].imgShownCounter);
+    prodViews.push(storeArr[i].imgShownCounter);
   }
 
   let literalChart = {
@@ -112,10 +112,10 @@ function charter()
         label: '# of Votes',
         data: prodClicks,
         backgroundColor: [
-          'yellow'
+          'red'
         ],
         borderColor: [
-          'black'
+          'red'
         ],
         borderWidth: 1
       },
@@ -123,23 +123,24 @@ function charter()
         label: '# of Views',
         data: prodViews,
         backgroundColor: [
-          'darkgrey'
+          'blue'
         ],
         borderColor: [
-          'black'
+          'blue'
         ],
         borderWidth: 1
       }]
     },
     options: {
       scales: {
-        y:{
+        y: {
           beginAtZero: true
         }
       },
     }
   };
-  new Chart(chartElem, literalChart);//using another script library
+
+  const myChart = new Chart(chartElem, literalChart);
 }
 
 
@@ -209,6 +210,7 @@ function handleClick(event)
     if(VOTINGROUNDS === 0)
     {
       imgContainer.removeEventListener('click', handleClick);
+      charter();
       return;
     }
     main();

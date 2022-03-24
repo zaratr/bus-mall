@@ -38,8 +38,29 @@ main div {
 
 }
 
-canvas
+#shopImages
 {
-  margin: 30px 30px 30px 0 30px;
+  display: flex;
+  justify-content: space-around;
 
+}
+
+section>img
+{
+  display: flex;
+  justify-content: space-around;
+}
+
+main>section
+{
+}
+
+
+#graph
+{
+  height: 500px;
+  width:  500px;
+  /*
+  transform: scale();
+  */
 }
